@@ -1,22 +1,31 @@
 name: CI
-on: [push, pull_request]
+
+on:
+  push:
+  pull_request:
+
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-        - name: Checkout
-          uses: actions/checkout@v3
-        - uses: actions/setup-node@v3
-          with:
-            node-version: 20
-        - name: Install
-          run: npm install
-        - name: Test
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Install
+        run: npm install
+
+      - name: Test
         env:
-        GITHUB_ACTIONS: true
-          run: npm run wdio
-        - uses: actions/upload-artifact@v3
-          if: failure()
-          with:
-            name: logs
-            path: logs
+          GITHUB_ACTIONS: true
+        run: npm run wdio
+
+      - uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+          name: logs
+          path: logs
