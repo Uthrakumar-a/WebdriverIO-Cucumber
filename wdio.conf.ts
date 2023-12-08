@@ -68,9 +68,10 @@ export const config: Options.Testrunner = {
     // {
     //     browserName: 'firefox',
     // },
-    {
-        browserName: 'MicrosoftEdge',
-    }],
+    // {
+    //     browserName: 'MicrosoftEdge',
+    // }
+    ],
 
     //
     // ===================
