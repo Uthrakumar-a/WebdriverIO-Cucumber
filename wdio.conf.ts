@@ -70,7 +70,11 @@ export const config: Options.Testrunner = {
     // },
     {
         browserName: 'MicrosoftEdge',
-    }],
+        'ms:edgeOptions': {
+            args: ['--headless']
+        }
+    }
+    ],
 
     //
     // ===================
