@@ -1,6 +1,9 @@
 name: CI
 
 on:
+  push:
+    branches:
+      - main
   pull_request:
   
 jobs:
@@ -26,5 +29,5 @@ jobs:
       - uses: actions/upload-artifact@v3
         if: failure()
         with:
-          name: logs
+          name: Uk-Logs
           path: logs
