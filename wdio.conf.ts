@@ -70,9 +70,9 @@ export const config: Options.Testrunner = {
     // },
     {
         browserName: 'MicrosoftEdge',
-        'goog:chromeOptions': {
-            args: process.env.GITHUB_ACTIONS ? ['--headless', '--disable-gpu'] : []
-            }
+        'ms:edgeOptions': {
+            args: ['--headless']
+        }
     }
     ],
 
