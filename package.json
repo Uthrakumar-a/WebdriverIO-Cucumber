@@ -2,17 +2,30 @@
   "name": "WebdriverIO-Cucumber",
   "type": "module",
   "devDependencies": {
-    "@wdio/cli": "^8.24.16",
-    "@wdio/cucumber-framework": "^8.24.13",
-    "@wdio/local-runner": "^8.24.12",
-    "@wdio/spec-reporter": "^8.24.12",
+    "@wdio/allure-reporter": "^8.27.2",
+    "@wdio/cli": "^8.27.2",
+    "@wdio/cucumber-framework": "^8.27.2",
+    "@wdio/local-runner": "^8.27.2",
+    "@wdio/spec-reporter": "^8.27.2",
     "chromedriver": "^119.0.1",
+    "cross-env": "^7.0.3",
+    "geckodriver": "^4.3.0",
+    "rimraf": "^5.0.5",
     "ts-node": "^10.9.1",
     "typescript": "^5.3.3",
     "wdio-chromedriver-service": "^8.1.1",
     "wdio-edgedriver-service": "^3.0.3"
   },
   "scripts": {
-    "wdio": "wdio run ./wdio.conf.ts"
+    "format:fix": "prettier --write \"test/**/*.{ts,tsx}\" \"conf/**/*.{ts,tsx}\" 'README.md' ",
+    "format:check": "prettier --check \"test/**/*.{ts,tsx}\" \"conf/**/*.{ts,tsx}\" 'README.md' ",
+    "generate-report": "allure generate allure-results -o allure-report --clean",
+    "test": "cross-env NODE_ENV=qa npx wdio wdio.conf.ts && npm run generate-report",
+    "dev": "cross-env NODE_ENV=dev npx wdio wdio.conf.ts && npm run generate-report",
+    "prod": "cross-env NODE_ENV=prod npx wdio wdio.conf.ts && npm run generate-report"
+  },
+  "dependencies": {
+    "date-fns": "^3.2.0",
+    "fs-extra": "^11.2.0"
   }
 }
