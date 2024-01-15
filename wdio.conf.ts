@@ -60,10 +60,15 @@ export const config: Options.Testrunner = {
     // Sauce Labs platform configurator - a great tool to configure your capabilities:
     // https://saucelabs.com/platform/platform-configurator
     //
-    capabilities: [{
-            browserName: 'chrome',
-          }, 
- ],
+    capabilities: [
+        {
+          browserName: 'chrome',
+          'goog:chromeOptions': {
+            args: ['--headless', '--disable-gpu'],
+          },
+        },
+        // Add other capabilities as needed
+      ],
 
     //
     // ===================
