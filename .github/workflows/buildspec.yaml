@@ -24,7 +24,7 @@ jobs:
       - name: Test
         env:
           GITHUB_ACTIONS: true
-        run: npm run wdio
+        run: npm run test
 
       - uses: actions/upload-artifact@v3
         if: failure()

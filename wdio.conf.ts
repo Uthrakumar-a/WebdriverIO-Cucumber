@@ -1,4 +1,6 @@
 import type { Options } from '@wdio/types'
+import { afterStep, beforeStep,  } from './test/common/utils.ts'
+
 export const config: Options.Testrunner = {
     //
     // ====================
@@ -9,7 +11,7 @@ export const config: Options.Testrunner = {
     autoCompileOpts: {
         autoCompile: true,
         tsNodeOpts: {
-            project: './tsconfig.json',
+            project: './tsconfig.e2e.json',
             transpileOnly: true
         }
     },
@@ -26,12 +28,11 @@ export const config: Options.Testrunner = {
     // worker process. In order to have a group of spec files run in the same worker
     // process simply enclose them in an array within the specs array.
     //
-    // If you are calling `wdio` from an NPM script (see https://docs.npmjs.com/cli/run-script),
-    // then the current working directory is where your `package.json` resides, so `wdio`
-    // will be called from there.
+    // The path of the spec files will be resolved relative from the directory of
+    // of the config file unless it's absolute.
     //
     specs: [
-        './features/**/*.feature'
+        './test/features/*.feature',
     ],
     // Patterns to exclude.
     exclude: [
@@ -59,22 +60,15 @@ export const config: Options.Testrunner = {
     // Sauce Labs platform configurator - a great tool to configure your capabilities:
     // https://saucelabs.com/platform/platform-configurator
     //
-     capabilities: [{
-        browserName: 'chrome',
-        'goog:chromeOptions': {
-        args: process.env.GITHUB_ACTIONS ? ['--headless', '--disable-gpu'] : []
-        }
-    },
-    // {
-    //     browserName: 'firefox',
-    // },
-    {
-        browserName: 'MicrosoftEdge',
-        'ms:edgeOptions': {
-            args: ['--headless']
-        }
-    }
-    ],
+    capabilities: [
+        {
+          browserName: 'chrome',
+          'goog:chromeOptions': {
+            args: ['--headless', '--disable-gpu'],
+          },
+        },
+        // Add other capabilities as needed
+      ],
 
     //
     // ===================
@@ -83,7 +77,7 @@ export const config: Options.Testrunner = {
     // Define all options that are relevant for the WebdriverIO instance here
     //
     // Level of logging verbosity: trace | debug | info | warn | error | silent
-    logLevel: 'info',
+    logLevel: 'error',
     //
     // Set specific log levels per logger
     // loggers:
@@ -123,7 +117,7 @@ export const config: Options.Testrunner = {
     // Services take over a specific job you don't want to take care of. They enhance
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
-     services: ['chromedriver','edgedriver'],
+    //services: ['chromedriver', 'msedgedriver'],
     //
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
@@ -146,12 +140,16 @@ export const config: Options.Testrunner = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter
-    reporters: ['spec'],
+    reporters:['spec',['allure', {
+        outputDir: "allure-results",
+        disableWebdriverStepsReporting: true,
+        disableWebdriverScreenshotsReporting: false,
+    }]],
 
     // If you are using Cucumber you need to specify the location of your step definitions.
     cucumberOpts: {
         // <string[]> (file/dir) require files before executing features
-        require: ['./features/step-definitions/steps.ts'],
+        require: ['./test/stepdef/*.ts'],
         // <boolean> show full backtrace for errors
         backtrace: false,
         // <string[]> ("extension:module") require files with the given EXTENSION after requiring MODULE (repeatable)
@@ -189,6 +187,7 @@ export const config: Options.Testrunner = {
      */
     // onPrepare: function (config, capabilities) {
     // },
+    
     /**
      * Gets executed before a worker process is spawned and can be used to initialize specific service
      * for that worker as well as modify runtime environments in an async fashion.
@@ -226,8 +225,7 @@ export const config: Options.Testrunner = {
      * @param {Array.<String>} specs        List of spec file paths that are to be run
      * @param {object}         browser      instance of created browser/device session
      */
-    // before: function (capabilities, specs) {
-    // },
+    //before:'',
     /**
      * Runs before a WebdriverIO command gets executed.
      * @param {string} commandName hook command name
@@ -259,8 +257,7 @@ export const config: Options.Testrunner = {
      * @param {IPickle}            scenario scenario pickle
      * @param {object}             context  Cucumber World object
      */
-    // beforeStep: function (step, scenario, context) {
-    // },
+    beforeStep,
     /**
      *
      * Runs after a Cucumber Step.
@@ -272,8 +269,7 @@ export const config: Options.Testrunner = {
      * @param {number}             result.duration  duration of scenario in milliseconds
      * @param {object}             context          Cucumber World object
      */
-    // afterStep: function (step, scenario, result, context) {
-    // },
+     afterStep,
     /**
      *
      * Runs after a Cucumber Scenario.
@@ -350,4 +346,5 @@ export const config: Options.Testrunner = {
     */
     // afterAssertion: function(params) {
     // }
+
 }
