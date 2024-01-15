@@ -20,7 +20,8 @@
     "format:fix": "prettier --write \"test/**/*.{ts,tsx}\" \"conf/**/*.{ts,tsx}\" 'README.md' ",
     "format:check": "prettier --check \"test/**/*.{ts,tsx}\" \"conf/**/*.{ts,tsx}\" 'README.md' ",
     "generate-report": "allure generate allure-results -o allure-report --clean",
-    "test": "cross-env NODE_ENV=qa npx wdio wdio.conf.ts && npm run generate-report",
+    "test": "cross-env NODE_ENV=qa npx wdio wdio.conf.ts",
+    "qa": "cross-env NODE_ENV=qa npx wdio wdio.conf.ts && npm run generate-report",
     "dev": "cross-env NODE_ENV=dev npx wdio wdio.conf.ts && npm run generate-report",
     "prod": "cross-env NODE_ENV=prod npx wdio wdio.conf.ts && npm run generate-report"
   },
