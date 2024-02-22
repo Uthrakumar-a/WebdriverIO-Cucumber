@@ -29,6 +29,9 @@
     "qa": "cross-env NODE_ENV=qa npx wdio wdio.conf.ts && npm run generate-report",
     "dev": "cross-env NODE_ENV=dev npx wdio wdio.conf.ts && npm run generate-report",
     "prod": "cross-env NODE_ENV=prod npx wdio wdio.conf.ts && npm run generate-report",
-    "lint-staged": {"*.{js,jsx,ts,tsx,json,md}": ["prettier --write"]}
+    "lint-staged": {
+      "*.{js,jsx,ts,tsx,json,md}": ["prettier --write"]
+    }
+    
   }
 }
