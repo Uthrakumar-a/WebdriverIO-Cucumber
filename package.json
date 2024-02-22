@@ -10,11 +10,16 @@
     "chromedriver": "^119.0.1",
     "cross-env": "^7.0.3",
     "geckodriver": "^4.3.0",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
+    "prettier": "^3.2.5",
     "rimraf": "^5.0.5",
     "ts-node": "^10.9.1",
     "typescript": "^5.3.3",
     "wdio-chromedriver-service": "^8.1.1",
-    "wdio-edgedriver-service": "^3.0.3"
+    "wdio-edgedriver-service": "^3.0.3",
+    "date-fns": "^3.2.0",
+    "fs-extra": "^11.2.0"
   },
   "scripts": {
     "format:fix": "prettier --write \"test/**/*.{ts,tsx}\" \"conf/**/*.{ts,tsx}\" 'README.md' ",
@@ -23,10 +28,7 @@
     "test": "cross-env NODE_ENV=qa npx wdio wdio.conf.ts",
     "qa": "cross-env NODE_ENV=qa npx wdio wdio.conf.ts && npm run generate-report",
     "dev": "cross-env NODE_ENV=dev npx wdio wdio.conf.ts && npm run generate-report",
-    "prod": "cross-env NODE_ENV=prod npx wdio wdio.conf.ts && npm run generate-report"
-  },
-  "dependencies": {
-    "date-fns": "^3.2.0",
-    "fs-extra": "^11.2.0"
+    "prod": "cross-env NODE_ENV=prod npx wdio wdio.conf.ts && npm run generate-report",
+    "lint-staged": {"*.{js,jsx,ts,tsx,json,md}": ["prettier --write"]}
   }
 }
