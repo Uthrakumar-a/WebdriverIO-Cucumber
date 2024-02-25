@@ -12,21 +12,22 @@ To run all web based feature files
 
 ```
 npm run test:web
-```  
-   To fix format
-    npm run format:fix
+```
 
-   To check format
-    npm run format:check
+To fix format
+npm run format:fix
 
-   To generate report
-    npm run generate-report
+To check format
+npm run format:check
 
-    To run QA env test 
+To generate report
+npm run generate-report
+
+    To run QA env test
     npm run test
-    
-    To run QA env test 
-    npm run dev 
-    
-    To run QA env test 
+
+    To run QA env test
+    npm run dev
+
+    To run QA env test
     npm run prod

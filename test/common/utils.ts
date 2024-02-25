@@ -67,17 +67,17 @@ export const selectVisibleText = async (elem: Element, text: string) => {
     await elem.selectByVisibleText(text);
 };
 export const selectIndex = async (elem: Element, index: number) => {
-  await elem.waitForExist();
-  await elem.selectByIndex(index);
+    await elem.waitForExist();
+    await elem.selectByIndex(index);
 };
 
 export const addLog = (log: string): void => {
     console.log(log);
 };
 
-export const generateRandomEmail= async()=> {
-  const baseEmail = 'user';
-  const domain = 'example.com'; 
-  const randomSuffix = Math.floor(Math.random() * 10000);
-  return `${baseEmail}${randomSuffix}@${domain}`;
-}
+export const generateRandomEmail = async () => {
+    const baseEmail = 'user';
+    const domain = 'example.com';
+    const randomSuffix = Math.floor(Math.random() * 10000);
+    return `${baseEmail}${randomSuffix}@${domain}`;
+};

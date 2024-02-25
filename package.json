@@ -27,12 +27,12 @@
         "qa": "cross-env NODE_ENV=qa npx wdio wdio.conf.ts && npm run generate-report",
         "dev": "cross-env NODE_ENV=dev npx wdio wdio.conf.ts && npm run generate-report",
         "prod": "cross-env NODE_ENV=prod npx wdio wdio.conf.ts && npm run generate-report",
-        "format:fix": "prettier --write \"test/**/*.{ts,tsx}\" \"conf/**/*.{ts,tsx}\" 'README.md' ",
-        "format:check": "prettier --check \"test/**/*.{ts,tsx}\" \"conf/**/*.{ts,tsx}\" 'README.md' ",
+        "format:fix": "prettier --write \"test/**/*.{ts,tsx}\" ",
+        "format:check": "prettier --check \"test/**/*.{ts,tsx}\" ",
         "prepare": "husky install"
     },
     "lint-staged": {
-        "*.{js,jsx,ts,tsx,json,md}": [
+        "*.{js,jsx,ts,tsx}": [
             "prettier --check"
         ]
     }
