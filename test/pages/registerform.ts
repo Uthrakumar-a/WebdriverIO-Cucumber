@@ -1,4 +1,4 @@
-import { click, enterValue, } from '../common/utils.ts';
+import { click, enterValue } from '../common/utils.ts';
 
 class Registerform {
     private get firstName() {
@@ -16,6 +16,7 @@ class Registerform {
     private get yoe() {
         return $("//input[@value='1']");
     }
+
     private get skills() {
         return $("//input[@value='Functional testing']");
     }
@@ -51,7 +52,7 @@ class Registerform {
         click(this.skills);
     };
     chooseTools = async () => {
-         (await this.tools).selectByIndex(1);
+        (await this.tools).selectByIndex(1);
     };
     enterDetails = async (value: string) => {
         await enterValue(this.others, value);
@@ -60,7 +61,7 @@ class Registerform {
         await click(this.submitButton);
     };
     getSuccessMsg = async () => {
-        return (await (this.successmsg)).getText()
+        return (await this.successmsg).getText();
     };
 }
 
