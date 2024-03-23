@@ -1,10 +1,6 @@
 pipeline {
     agent any
-    
-    tools {
-        node 'NodeJS 20.8.1' // Replace 'version' with the Node.js version you want to use
-    }
-    
+        
     stages {
         stage('npm Install') {
             steps {
