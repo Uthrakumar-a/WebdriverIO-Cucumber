@@ -2,7 +2,7 @@ pipeline {
     agent any
     
     tools {
-        nodejs: 'NodeJS 20.8.1' // Replace 'version' with the Node.js version you want to use
+        nodejs 'NodeJS 20.8.1' // Replace 'version' with the Node.js version you want to use
     }
     
     stages {
